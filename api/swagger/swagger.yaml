@@ -48,6 +48,32 @@ paths:
         default:
           description: "Error"
           schema:
+            $ref: "#/definitions/ErrorResponse"  
+  /movie/{id}:
+    # our controller name
+    x-swagger-router-controller: "moviesController"
+    get:
+      operationId: "getOne"
+      tags:
+        - "movie"
+      summary: "Get the movie by id"
+      description: "Returns a movie with all details based on the movie id"
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: "id"
+          description: "The movie identifier"
+          type: "integer"
+          in: "path"
+          required: true
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetMovieByIdResponse"
+        default:
+          description: "Error"
+          schema:
             $ref: "#/definitions/ErrorResponse"     
   /swagger:
     x-swagger-pipe: "swagger_raw"
@@ -63,6 +89,34 @@ definitions:
         type: "string"
       releaseDate:
         type: "string"
+      usGross:
+        type: "integer"
+      worldwideGross:
+        type: "integer"
+      usDvdSales:
+        type: "integer"
+      productionBudget:
+        type: "integer"
+      mpaaRating:
+        type: "string"
+      runningTimeInMin:
+        type: "integer"
+      distributor:
+        type: "string"
+      source:
+        type: "string"
+      majorGenre:
+        type: "string"
+      creativeType:
+        type: "string"
+      director:
+        type: "string"
+      rottenTomatoesRating:
+        type: "number"
+      imdbRating:
+        type: "number"
+      imdbVotes:
+        type: "integer"
   # GET /movie successful response
   GetMoviesListResponse:
     required:
@@ -73,6 +127,16 @@ definitions:
         type: "array"
         items: 
           $ref: "#/definitions/Movie"
+  # GET /movie successful response
+  GetMovieByIdResponse:
+    required:
+      - "movies"
+    properties:
+      # The array of movies
+      movies:
+        type: "object"
+        items: 
+          $ref: "#/definitions/Movie"        
   ErrorResponse:
     required:
       - "message"

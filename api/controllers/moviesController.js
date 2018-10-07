@@ -1,9 +1,13 @@
 'use strict';
 
+// load dependancies
+var svc = require('../../services/moviesService')();
+var log = require('logger').createLogger();
+
 module.exports = {
-    getAll
+    getAll,
+    getOne
     // ,
-    // save,
     // getOne,
     // update,
     // delMovie
@@ -11,61 +15,22 @@ module.exports = {
 
 //GET /movie operationId
 function getAll(req, res, next) {
+    var _movies = svc.getAll();
+    log.info(`GET [/movie]: Returning ${_movies.length} movies`);
     res.json({
-        movies: [{
-            "title": "The Land Girls",
-            "usGross": 146083,
-            "worldwideGross": 146083,
-            "usDvdSales": null,
-            "productionBudget": 8000000,
-            "releaseDate": "12-Jun-98",
-            "mpaaRating": "R",
-            "runningTimeInMin": null,
-            "distributor": "Gramercy",
-            "source": null,
-            "majorGenre": null,
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.1,
-            "imdbVotes": 1071,
-            "id": 1
-        }, {
-            "title": "First Love, Last Rites",
-            "usGross": 10876,
-            "worldwideGross": 10876,
-            "usDvdSales": null,
-            "productionBudget": 300000,
-            "releaseDate": "7-Aug-98",
-            "mpaaRating": "R",
-            "runningTimeInMin": null,
-            "distributor": "Strand",
-            "source": null,
-            "majorGenre": "Drama",
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.9,
-            "imdbVotes": 207,
-            "id": 2
-        }, {
-            "title": "I Married a Strange Person",
-            "usGross": 203134,
-            "worldwideGross": 203134,
-            "usDvdSales": null,
-            "productionBudget": 250000,
-            "releaseDate": "28-Aug-98",
-            "mpaaRating": null,
-            "runningTimeInMin": null,
-            "distributor": "Lionsgate",
-            "source": null,
-            "majorGenre": "Comedy",
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.8,
-            "imdbVotes": 865,
-            "id": 3
-        }]
+        movies: _movies
     });
+}
+
+//GET /movie/{id} operationId
+function getOne(req, res, next) {
+    var id = req.swagger.params.id.value; //req.swagger contains the path parameters
+    var movie = svc.getById(id);
+    if (movie) {
+        log.info(`GET [/movie/${id}]: Returning movie "${movie.title}"`);
+        res.json(movie);
+    } else {
+        log.info(`GET [/movie/${id}]: Could not find the movie`);
+        res.status(404).send();
+    }
 }

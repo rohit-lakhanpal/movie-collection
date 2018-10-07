@@ -29,11 +29,11 @@ $ npm start
 > movie-collection@1.0.0 start /users/ro/repos/movie-collection
 > node index.js
 
-info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - start log
-info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - set config
-info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - create rest endpoints
-info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  .... installing swagger middleware
-info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  .... listening on port 10010
+info [Sun Oct 07 2018 19:35:04 GMT+1100 (AEDT)]  [APP INIT]: Start logger ...
+info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Setting config ...
+info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Creating rest endpoints ...
+info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Installing swagger middleware ...
+info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Now listening on port 10010 ...
 ```
 
 Now that your app is running, try calling the /movie RESTful api endpoint & en sure you get a result

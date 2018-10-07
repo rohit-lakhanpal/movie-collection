@@ -1,21 +1,20 @@
 'use strict';
 
 // load dependancies
-var logger = require('logger');
+var log = require('logger').createLogger();
 var swaggerExpress = require('swagger-express-mw');
 var app = require('express')();
 //var db = require('./config/db')();
 
 
 // create logger & log init
-var log = logger.createLogger();
-log.info("... app init - start log");
+log.info("[APP INIT]: Start logger ...");
 
 // set config
 var config = {
     appRoot: __dirname // required config
 };
-log.info("... app init - set config");
+log.info("[APP INIT]: Setting config ...");
 
 // create RESTful endpoints
 swaggerExpress.create(config, function (err, swaggerExpress) {
@@ -25,13 +24,13 @@ swaggerExpress.create(config, function (err, swaggerExpress) {
     }
 
     // install middleware
-    log.info(".... installing swagger middleware");
+    log.info("[APP INIT]: Installing swagger middleware ...");
     swaggerExpress.register(app);
 
     // listen to port ..
     var port = process.env.PORT || 10010;
-    log.info(`.... listening on port ${port}`);
+    log.info(`[APP INIT]: Now listening on port ${port} ...`);
     app.listen(port);
 
 });
-log.info("... app init - create rest endpoints");
+log.info("[APP INIT]: Creating rest endpoints ...");
