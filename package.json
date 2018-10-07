@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "swagger project test -m"
+    "test": "swagger project test"
   },
   "repository": {
     "type": "git",
