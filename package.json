@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "swagger project test"
+    "test": "swagger project test -m"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/rohit-lakhanpal/movie-collection#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
     "should": "^13.2.3",
     "supertest": "^3.3.0"
   },
@@ -28,6 +29,7 @@
     "crypto": "^1.0.1",
     "express": "^4.16.3",
     "logger": "0.0.1",
+    "mocha": "^5.2.0",
     "swagger-express-mw": "^0.7.0"
   }
 }

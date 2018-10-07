@@ -4,10 +4,11 @@
 var log = require('logger').createLogger();
 var swaggerExpress = require('swagger-express-mw');
 var app = require('express')();
-//var db = require('./config/db')();
 
+// export app for testing
+module.exports = app; // for testing
 
-// create logger & log init
+// create logger & log init 
 log.info("[APP INIT]: Start logger ...");
 
 // set config

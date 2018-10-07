@@ -1,6 +1,7 @@
-# A RESTful Movies {API}
+# A RESTful Movies {API} ![Build Status](https://travis-ci.com/rohit-lakhanpal/movie-collection.svg?branch=master)
 
 ## Description
+About this app ...
 
 ## Quick Start
 To run this app locally, you need the following installed:
