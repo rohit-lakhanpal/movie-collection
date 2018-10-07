@@ -1,7 +1,15 @@
 # the RESTful movies app ![Build Status](https://travis-ci.com/rohit-lakhanpal/movie-collection.svg?branch=master)
 
 ## Description
-About this app ...
+This is a simple app that exposes a RESTful {:/movie} API endpoints. 
+
+This app serves as the sample app to explore **exposing back-end APIs via Azure's API Gateway**  (API Management Service). 
+
+The supporting blog posts are available at [blog.rohitl.com/search/label/APIm](http://blog.rohitl.com/search/label/APIm).
+
+The APIs exposed look like so ...
+
+![Exposed APIs](/resources/img/swagger.png)
 
 ## Quick Start
 To run this app locally, you need the following installed:
@@ -43,12 +51,12 @@ Now that your app is running, try calling the /movie RESTful api endpoint & en s
 $ curl http://localhost:10010/movie
 {"movies":[ ... ]}
 ```
-
-
+## Testing the code
+...
 
 
 ## Code structure
-
+...
 
 
 ## Credits

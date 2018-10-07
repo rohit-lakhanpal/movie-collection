@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "This is a simple node app that exposes a RESTful /movie endpoint that can be used for testing."
+  description: "This is a simple node app that exposes a RESTful {:/movie} endpoint that can be used for testing."
   version: "1.0.0"
   title: "the RESTful movies app"
   termsOfService: "http://swagger.io/terms/"
