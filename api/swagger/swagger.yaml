@@ -1,0 +1,81 @@
+swagger: "2.0"
+info:
+  description: "This is a simple node app that exposes a RESTful /movie endpoint that can be used for testing."
+  version: "1.0.0"
+  title: "the RESTful movies app"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "mail@rohitl.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+# during dev, should point to your local machine
+host: "localhost:10010"
+# basePath prefixes all resource paths (maybe change to /api?)
+basePath: "/"
+tags:
+- name: "movie"
+  description: "Everything about our movies"
+  externalDocs:
+    description: "Find out more"
+    url: "http://blog.rohitl.com/search/label/APIm"
+ # tip: remove http to make production-grade
+schemes:
+  - "http"
+  - "https"
+# format of bodies a client can send (Content-Type)
+consumes:
+  - "application/json"
+# format of the responses to the client (Accepts)
+produces:
+  - "application/json"
+paths:
+  /movie:
+    # our controller name
+    x-swagger-router-controller: "moviesController"
+    get:
+      operationId: "getAll"
+      tags:
+        - "movie"
+      summary: "Get the movies list"
+      description: "Returns an inventory list of all movies with all details"
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetMoviesListResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"     
+  /swagger:
+    x-swagger-pipe: "swagger_raw"
+# complex objects have schema definitions
+definitions:
+  # define the base movie object
+  Movie:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      title:
+        type: "string"
+      releaseDate:
+        type: "string"
+  # GET /movie successful response
+  GetMoviesListResponse:
+    required:
+      - "movies"
+    properties:
+      # The array of movies
+      movies:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Movie"
+  ErrorResponse:
+    required:
+      - "message"
+    properties:
+      message:
+        type: "string"
