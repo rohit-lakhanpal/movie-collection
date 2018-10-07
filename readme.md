@@ -1,4 +1,4 @@
-# A RESTful Movies {API} ![Build Status](https://travis-ci.com/rohit-lakhanpal/movie-collection.svg?branch=master)
+# the RESTful movies app ![Build Status](https://travis-ci.com/rohit-lakhanpal/movie-collection.svg?branch=master)
 
 ## Description
 About this app ...
@@ -6,8 +6,9 @@ About this app ...
 ## Quick Start
 To run this app locally, you need the following installed:
 1. node.js
-1. a code editor of your choice
+1. a code editor of your choice (vscode maybe)
 1. a git client
+1. postman
 
 Next simply pull the repo & make it your working directory like so ..
 ```nodejs
