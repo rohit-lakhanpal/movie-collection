@@ -1,4 +1,4 @@
-# RESTful Movies 
+# A RESTful Movies {API}
 
 ## Description
 
