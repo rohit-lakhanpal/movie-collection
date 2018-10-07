@@ -2,7 +2,7 @@
 
 ## Description
 
-## Getting started
+## Quick Start
 To run this app locally, you need the following installed:
 1. node.js
 1. a code editor of your choice
@@ -21,6 +21,31 @@ $ npm install
 
 $ npm start
 ```
+
+You should now see a message that indicates that the app is now running.
+```nodejs
+$ npm start
+
+> movie-collection@1.0.0 start /users/ro/repos/movie-collection
+> node index.js
+
+info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - start log
+info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - set config
+info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  ... app init - create rest endpoints
+info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  .... installing swagger middleware
+info [Sun Oct 07 2018 18:47:04 GMT+1100 (AEDT)]  .... listening on port 10010
+```
+
+Now that your app is running, try calling the /movie RESTful api endpoint & en sure you get a result
+```nodejs
+$ curl http://localhost:10010/movie
+{"movies":[ ... ]}
+```
+
+
+
+
+## Code structure
 
 
 
