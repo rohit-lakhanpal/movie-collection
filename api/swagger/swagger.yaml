@@ -99,6 +99,35 @@ paths:
           description: "Error"
           schema:
             $ref: "#/definitions/ErrorResponse"    
+    put:
+      operationId: "update"
+      tags:
+        - "movie"
+      summary: "Update the movie by id"
+      description: "Ypdates a movie based on the movie id"
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: "id"
+          description: "The movie identifier"
+          type: "integer"
+          in: "path"
+          required: true
+        - name: "movie"
+          description: "The movie properties"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Movie"
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/Movie"   
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"   
     delete:
       operationId: "deleteOne"
       tags:
@@ -119,7 +148,7 @@ paths:
         default:
           description: "Error"
           schema:
-            $ref: "#/definitions/ErrorResponse"   
+            $ref: "#/definitions/ErrorResponse"  
   /swagger:
     x-swagger-pipe: "swagger_raw"
 # complex objects have schema definitions

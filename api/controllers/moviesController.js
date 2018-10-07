@@ -8,7 +8,7 @@ module.exports = {
     getAll,
     getOne,
     save,   
-    // update,
+    update,
     deleteOne
 };
 
@@ -50,6 +50,18 @@ function deleteOne(req, res, next) {
         res.status(201).send();
     } else {
         log.info(`GET [/movie/${id}]: Could not find the movie`);
+        res.status(404).send();
+    }
+}
+
+//PUT /movie/{id} operation
+function update(req, res, next) {
+    var id = req.swagger.params.id.value; //req.swagger contains the path parameters
+    var movie = req.body;
+    var updatedMovie = svc.update(id, movie);
+    if (updatedMovie) {
+        res.json(updatedMovie);
+    } else {
         res.status(404).send();
     }
 }
