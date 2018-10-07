@@ -1,90 +1,53 @@
 'use strict';
 
+//var path = require('path');
+var data = require('../db/movies');
+
 module.exports = function () {
+    var movieList = data.movieList || []
+
     // returns all movies
     var _getAll = function () {
-        return [{
-            "title": "The Land Girls",
-            "usGross": 146083,
-            "worldwideGross": 146083,
-            "usDvdSales": null,
-            "productionBudget": 8000000,
-            "releaseDate": "12-Jun-98",
-            "mpaaRating": "R",
-            "runningTimeInMin": null,
-            "distributor": "Gramercy",
-            "source": null,
-            "majorGenre": null,
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.1,
-            "imdbVotes": 1071,
-            "id": 1
-        }, {
-            "title": "First Love, Last Rites",
-            "usGross": 10876,
-            "worldwideGross": 10876,
-            "usDvdSales": null,
-            "productionBudget": 300000,
-            "releaseDate": "7-Aug-98",
-            "mpaaRating": "R",
-            "runningTimeInMin": null,
-            "distributor": "Strand",
-            "source": null,
-            "majorGenre": "Drama",
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.9,
-            "imdbVotes": 207,
-            "id": 2
-        }, {
-            "title": "I Married a Strange Person",
-            "usGross": 203134,
-            "worldwideGross": 203134,
-            "usDvdSales": null,
-            "productionBudget": 250000,
-            "releaseDate": "28-Aug-98",
-            "mpaaRating": null,
-            "runningTimeInMin": null,
-            "distributor": "Lionsgate",
-            "source": null,
-            "majorGenre": "Comedy",
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.8,
-            "imdbVotes": 865,
-            "id": 3
-        }];
+        return movieList;
     }
 
     // returns movie by id
     var _getById = function (id) {
-        return {
-            "title": "I Married a Strange Person",
-            "usGross": 203134,
-            "worldwideGross": 203134,
-            "usDvdSales": null,
-            "productionBudget": 250000,
-            "releaseDate": "28-Aug-98",
-            "mpaaRating": null,
-            "runningTimeInMin": null,
-            "distributor": "Lionsgate",
-            "source": null,
-            "majorGenre": "Comedy",
-            "creativeType": null,
-            "director": null,
-            "rottenTomatoesRating": null,
-            "imdbRating": 6.8,
-            "imdbVotes": 865,
-            "id": 3
-        };
-    }
+        var movie = null;
+        movieList.forEach(element => {
+            if(element.id == id)
+                movie = element;
+        });
+        return movie;
+    };
+
+    // save a movie
+    var _save = function (movie){
+        movie.id = movieList.length + 1;
+        movieList.push(movie);
+        return movie;
+    };
+
+    // delete movie by id
+    var _deleteById = function (id) {
+        var movieIndex = -1;
+        movieList.forEach((element, index) => {
+            if(element.id == id) {
+                movieIndex = index;
+                return;
+            }
+        });
+        if (movieIndex > -1) {
+            movieList.splice(movieIndex, 1);
+            return true;
+        }
+        return false;
+    };
 
     return {
         getAll: _getAll,
-        getById: _getById
+        getById: _getById,
+        save: _save,
+        deleteById: _deleteById
     };
 };

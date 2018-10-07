@@ -22,7 +22,7 @@ tags:
  # tip: remove http to make production-grade
 schemes:
   - "http"
-  - "https"
+# - "https"
 # format of bodies a client can send (Content-Type)
 consumes:
   - "application/json"
@@ -45,6 +45,30 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/GetMoviesListResponse"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"  
+    post:
+      operationId: "save"
+      tags:
+        - "movie"
+      summary: "Add a movie"
+      description: "Adds a movie to the inventory list of all movies with all details"
+      # movie info to be stored
+      parameters:
+        - name: "movie"
+          description: "Movie properties"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Movie"
+      # define the type of response for Success "200" and Error
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Movie"
         default:
           description: "Error"
           schema:
@@ -74,7 +98,28 @@ paths:
         default:
           description: "Error"
           schema:
-            $ref: "#/definitions/ErrorResponse"     
+            $ref: "#/definitions/ErrorResponse"    
+    delete:
+      operationId: "deleteOne"
+      tags:
+        - "movie"
+      summary: "Delete the movie by id"
+      description: "Deletes a movie based on the movie id"
+      # define the type of response for Success "200" and Error
+      parameters:
+        - name: "id"
+          description: "The movie identifier"
+          type: "integer"
+          in: "path"
+          required: true
+      # define the type of response for Success "200" and Error
+      responses:
+        "201":
+          description: "Accepted"
+        default:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ErrorResponse"   
   /swagger:
     x-swagger-pipe: "swagger_raw"
 # complex objects have schema definitions
