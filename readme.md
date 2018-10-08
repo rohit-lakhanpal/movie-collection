@@ -32,7 +32,7 @@ $ npm install
 $ npm start
 ```
 
-You should now see a message that indicates that the app is now running.
+You should now see a message that indicates that the app is now running ..
 ```nodejs
 $ npm start
 
@@ -45,11 +45,16 @@ info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Creating rest endpo
 info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Installing swagger middleware ...
 info [Sun Oct 07 2018 19:35:05 GMT+1100 (AEDT)]  [APP INIT]: Now listening on port 10010 ...
 ```
-
-Now that your app is running, try calling the /movie RESTful api endpoint & en sure you get a result
+Now that your app is running, try calling the /movie RESTful api endpoint & ensure you get a result
 ```nodejs
 $ curl http://localhost:10010/movie
 {"movies":[ ... ]}
+```
+
+Your swagger file is available at /swagger. Call it and make sure you are able to see your swagger file
+```nodejs
+$ curl http://localhost:10010/swagger
+{"swagger": "2.0", ... }
 ```
 ## Testing the code
 ...
