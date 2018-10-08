@@ -62,7 +62,7 @@ Or just open it in your browser window ..
 ![Exposed Swagger Endpoint](/resources/img/swagger-hosted-localhost.png)
 
 ## Using **the RESTful movies app**
-To ensure that your app is working as expected, you can use a utility like [https://www.getpostman.com](postman) to interact with your application like so ..
+To ensure that your app is working as expected, you can use a utility like [postman](https://www.getpostman.com) to interact with your application like so ..
 
 1. Ensure that your app is running 
 1. Open postman & click the import button ![step 1](/resources/img/postman-1.png)
