@@ -79,7 +79,7 @@ Have a bit of fun with the APIs now, you deserve it :)
 Executing the npm test command runs the controller & srervice tests located in the /test folder like so .. 
 
 ```bash
-$ npm test
+$ npm run localtest
 
 > movie-collection@1.0.0 test /Users/ro/repos/movie-collection
 > swagger project test
@@ -122,7 +122,7 @@ I have used Azure DevOps for the Build-Test-Deploy ALM Lifecycle. The Project is
 The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter like so  ..
 
 ```bash
-$ npm run citests
+$ npm test
 ```
 
 ### CI Build Status
