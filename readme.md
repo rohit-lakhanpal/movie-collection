@@ -125,21 +125,32 @@ The tests for the CI pipeline run the following command that allows using the mo
 $ npm run citests
 ```
 
-### CI Build Status
+### CI Build using Azure DevOps
+#### Current Build Status
+
 [![Build Status](https://dev.azure.com/rohitl/movie-collection/_apis/build/status/movie-collection-Node.js%20With%20gulp-CI)](https://dev.azure.com/rohitl/movie-collection/_build/latest?definitionId=3)
 
 My CI build settings for the APP were as shown below. I've used the following article to help guide me [https://blogs.msdn.microsoft.com/nilayshah/2018/01/29/vsts-ci-to-build-and-test-node-js-app-with-gulp-and-mocha/](https://blogs.msdn.microsoft.com/nilayshah/2018/01/29/vsts-ci-to-build-and-test-node-js-app-with-gulp-and-mocha/).
 
-#### CI Build Steps:
+#### Setting up the build
 ![1](/resources/img/build-1.png)
+
 ![2](/resources/img/build-2.png)
+
 ![3](/resources/img/build-3.png)
+
 ![4](/resources/img/build-4.png)
+
 ![5](/resources/img/build-5.png)
+
 ![6](/resources/img/build-6.png)
+
 ![7](/resources/img/build-7.png)
+
 ![8](/resources/img/build-8.png)
+
 ![9](/resources/img/build-9.png)
+
 ![10](/resources/img/build-10.png)
 
 ## Creating the Azure Resources for Deployment
