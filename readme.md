@@ -26,7 +26,7 @@ $ git clone https://github.com/rohit-lakhanpal/movie-collection.git
 $ cd movie-collection
 ```
 
-To after that all you need to do is install your dependancies & start your application ..
+To after that all you need to do is install your dependencies & start your application ..
 ```bash
 $ npm install
 
@@ -69,14 +69,14 @@ To ensure that your app is working as expected, you can use a utility like [post
 1. Open postman & click the import button ![step 1](/resources/img/postman-1.png)
 1. In the popup, click "Import From Link" & enter the URL to your swagger file [http://localhost:10010/swagger](http://localhost:10010/swagger) ![step 2](/resources/img/postman-2.png)
 1. Then simply click import
-1. Under the "Collections" you should now see "the RESTful movies app" with all the endpoints that are accessable ![step 3](/resources/img/postman-3.png)
-1. You can now click on any of the endponts & make requests
+1. Under the "Collections" you should now see "the RESTful movies app" with all the endpoints that are accessible ![step 3](/resources/img/postman-3.png)
+1. You can now click on any of the endpoints & make requests
 
 Have a bit of fun with the APIs now, you deserve it :)
 
 ## Testing the code 
 ### Executing Local tests
-Executing the npm test command runs the controller & srervice tests located in the /test folder like so .. 
+Executing the npm test command runs the controller & service tests located in the /test folder like so .. 
 
 ```bash
 $ npm test
@@ -117,7 +117,7 @@ done
 ```
 
 ### CI Tests
-I have used Azure DevOps for the Build-Test-Deploy ALM Lifecycle. The Project is located at [https://dev.azure.com/rohitl/movie-collection](https://dev.azure.com/rohitl/movie-collection). Instructions on viewing the results of the CI Pipeline is available using the aforementioned link.
+I have used Azure DevOps for the Build-Test-Deploy ALM Life cycle. The Project is located at [https://dev.azure.com/rohitl/movie-collection](https://dev.azure.com/rohitl/movie-collection). Instructions on viewing the results of the CI Pipeline is available using the aforementioned link.
 
 The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter to run the **controller test**. The tests on running, create a test results file at "/test-results/ci.controller.results.xml" like so  ..
 
@@ -134,8 +134,84 @@ $ npm run citestservices
 ### CI Build Status
 [![Build Status](https://dev.azure.com/rohitl/movie-collection/_apis/build/status/movie-collection-Node.js%20With%20gulp-CI)](https://dev.azure.com/rohitl/movie-collection/_build/latest?definitionId=3)
 
-## Code structure
-...
+## Creating the Azure Resources for Deployment
+Now lets use Azure CLI to deploy this app. I have used the following post to guide me in deploying this app: "[Create a web app and deploy files with FTP](https://docs.microsoft.com/en-au/azure/app-service/scripts/app-service-cli-deploy-ftp?toc=%2fcli%2fazure%2ftoc.json)".
+
+### What is Azure CLI
+The Azure CLI is Microsoft's cross-platform command-line experience for managing Azure resources. You can use it in your browser with Azure Cloud Shell, or install it on macOS, Linux, or Windows and run it from the command line.
+
+### Pre-requisites
+To deploy the application, we will need to decide the following info
+1. An Azure subscription account (in my case its called 'Subscription 2')
+1. A resource group (in my case i'm creating a new one called 'rg-ause-movie-collection')
+1. Deployment location (i'll be deploying to the 'Australia Southeast' data center)
+1. An App Service Plan & the tier (i'm creating rg-ause-appsvcplan-free in using the free tier)
+1. Name of web application (i'm calling it rg-ause-webapp-movie-collection)
+1. NodeJS version (you can check available runtimes using **az webapp list-runtimes**)
+
+### Deployment Steps
+1. Start by logging in 
+    ```bash
+    $ az login
+    ```
+
+1. List available subscriptions for your accounts (in case you have more than 1 Subscription accessible to your account)
+    ```Bash
+    $ az account list
+    [
+      {
+        "cloudName": "AzureCloud",
+        "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "isDefault": false,
+        "name": "Subscription 1",
+        "state": "Enabled",
+        "tenantId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "user": {
+          "name": "roh.it@hotmail.com",
+          "type": "user"
+        }
+      },
+      {
+        "cloudName": "AzureCloud",
+        "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "isDefault": false,
+        "name": "Subscription 2",
+        "state": "Enabled",
+        "tenantId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "user": {
+          "name": "roh.it@hotmail.com",
+          "type": "user"
+        }
+      }
+    ]
+    ```
+
+1. Select your subscription from the list above
+    ```bash
+    $ az account set -s "Subscription 2"
+    ```
+
+1. List the resource groups available to you
+    ```bash
+    $ az group list
+    ```
+
+1. You can either choose one of the groups listed above OR create a new one like so ..
+    ```bash
+    $ az group create --name rg-ause-movie-collection --location "Australia Southeast"
+    ```
+1. Create an App Service plan in `FREE` tier.
+    ```bash    
+    $ az appservice plan create --name rg-ause-appsvcplan-free --resource-group rg-ause-movie-collection --sku FREE
+    ```
+1. Now its time to create our webapp
+    ```bash
+    az webapp create --name rg-ause-webapp-movie-collection --resource-group rg-ause-movie-collection --plan rg-ause-appsvcplan-free --runtime "node|8.11" 
+    ```
+1. You should now be able to see your app within the Azure Portal ![created app](/resources/img/created-app.png)
+
+
+
 
 ## Credits
 The code written has been forked & modified from Samuele Zaza's [original repo](https://github.com/samuxyz/movie-collection) (if you are interested in the code, Sam has written an excellent post detailing [how to build RESTful apis with NodeJS](https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger)).

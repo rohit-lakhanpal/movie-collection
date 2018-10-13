@@ -1,1 +1,11 @@
-# Placeholder for az cli script to deploy nodejs app
+az --help
+az account list
+az account set -s "XXXXXXXXXXXX"
+az group list
+az group create --name rg-ause-movie-collection --location "Australia Southeast"
+az appservice plan create --name rg-ause-appsvcplan-free --resource-group rg-ause-movie-collection --sku FREE
+az webapp list
+az webapp --help
+az webapp create --help
+az webapp list-runtimes
+az webapp create --name rg-ause-webapp-movie-collection --resource-group rg-ause-movie-collection --plan rg-ause-appsvcplan-free --runtime "node|8.11"
