@@ -14,10 +14,12 @@ module.exports = function () {
     // returns movie by id
     var _getById = function (id) {
         var movie = null;
-        movieList.forEach(element => {
-            if (element.id == id)
-                movie = element;
-        });
+        if(id) {
+            movieList.forEach(element => {
+                if (element.id == id)
+                    movie = element;
+            });
+        }
         return movie;
     };
 
