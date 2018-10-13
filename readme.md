@@ -250,7 +250,9 @@ To deploy the application, we will need to decide the following info
     $ cd resources/deploy
 
     $ sh deploy.sh -i YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY -g rg-ause-movie-collection -n rg-ause-webapp-movie-collection -l "Australia Southeast"
+    
     ....
+
     Template has been successfully deployed
     ```
     > If you are on a windows machine you can run the `deploy.ps1` powershell script instead of the `deploy.sh` shell script.
@@ -264,7 +266,24 @@ To deploy the application, we will need to decide the following info
 I will be using the Azure DevOps Release Pipeline to automate this deployment. Since we previously used the same tool to build the app, the deployment is super simple.
 
 You can follow along with these screenshots ...
-<<ADD Screenshots HERE>>
+
+![1](/resources/img/release-1.png)
+
+![2](/resources/img/release-2.jpg)
+
+![3](/resources/img/release-3.png)
+
+![4](/resources/img/release-4.jpg)
+
+![5](/resources/img/release-5.png)
+
+![6](/resources/img/release-6.jpg)
+
+![7](/resources/img/release-7.jpg)
+
+![8](/resources/img/release-8.jpg)
+
+Once you've done all that, dont forget to save :)
 
 ## Credits
 The code written has been forked & modified from Samuele Zaza's [original repo](https://github.com/samuxyz/movie-collection) (if you are interested in the code, Sam has written an excellent post detailing [how to build RESTful apis with NodeJS](https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger)).
