@@ -134,6 +134,21 @@ $ npm run citestservices
 ### CI Build Status
 [![Build Status](https://dev.azure.com/rohitl/movie-collection/_apis/build/status/movie-collection-Node.js%20With%20gulp-CI)](https://dev.azure.com/rohitl/movie-collection/_build/latest?definitionId=3)
 
+My CI build settings for the APP were as shown below. I've used the following article to help guide me [https://blogs.msdn.microsoft.com/nilayshah/2018/01/29/vsts-ci-to-build-and-test-node-js-app-with-gulp-and-mocha/](https://blogs.msdn.microsoft.com/nilayshah/2018/01/29/vsts-ci-to-build-and-test-node-js-app-with-gulp-and-mocha/).
+
+#### CI Build Steps:
+![1](/resources/img/build-1.png)
+![2](/resources/img/build-2.png)
+![3](/resources/img/build-3.png)
+![4](/resources/img/build-4.png)
+![5](/resources/img/build-5.png)
+![6](/resources/img/build-6.png)
+![7](/resources/img/build-7.png)
+![8](/resources/img/build-8.png)
+![9](/resources/img/build-9.png)
+![10](/resources/img/build-10.png)
+![11](/resources/img/build-11.png)
+
 ## Creating the Azure Resources for Deployment
 Now lets use Azure CLI to deploy this app. I have used the following post to guide me in deploying this app: "[Create a web app and deploy files with FTP](https://docs.microsoft.com/en-au/azure/app-service/scripts/app-service-cli-deploy-ftp?toc=%2fcli%2fazure%2ftoc.json)".
 
@@ -149,7 +164,7 @@ To deploy the application, we will need to decide the following info
 1. Name of web application (i'm calling it rg-ause-webapp-movie-collection)
 1. NodeJS version (you can check available runtimes using **az webapp list-runtimes**)
 
-### Deployment Steps
+### Steps to create the necessary resources
 1. Start by logging in 
     ```bash
     $ az login
@@ -210,8 +225,11 @@ To deploy the application, we will need to decide the following info
     ```
 1. You should now be able to see your app within the Azure Portal ![created app](/resources/img/created-app.png)
 
+1. On navigating to the web app you will see this ..
+![created app](/resources/img/non-init-app.png)
 
-
+## Deploying this app
+...
 
 ## Credits
 The code written has been forked & modified from Samuele Zaza's [original repo](https://github.com/samuxyz/movie-collection) (if you are interested in the code, Sam has written an excellent post detailing [how to build RESTful apis with NodeJS](https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger)).
