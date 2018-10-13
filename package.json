@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",    
-    "localtest": "swagger project test",
-    "test": "npm run citestservices; npm run citestcontrollers",    
+    "test": "swagger project test",
     "citestcontrollers": "mocha test/**/**/*.js --exit --timeout 10000  --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.controller.results.xml",
     "citestservices": "mocha test/**/*.js --exit --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.service.results.xml"
   },

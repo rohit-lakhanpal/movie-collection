@@ -79,7 +79,7 @@ Have a bit of fun with the APIs now, you deserve it :)
 Executing the npm test command runs the controller & srervice tests located in the /test folder like so .. 
 
 ```bash
-$ npm run localtest
+$ npm test
 
 > movie-collection@1.0.0 test /Users/ro/repos/movie-collection
 > swagger project test
@@ -119,10 +119,16 @@ done
 ### CI Tests
 I have used Azure DevOps for the Build-Test-Deploy ALM Lifecycle. The Project is located at [https://dev.azure.com/rohitl/movie-collection](https://dev.azure.com/rohitl/movie-collection). Instructions on viewing the results of the CI Pipeline is available using the aforementioned link.
 
-The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter like so  ..
+The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter to run the **controller test**. The tests on running, create a test results file at "/test-results/ci.controller.results.xml" like so  ..
 
 ```bash
-$ npm test
+$ npm run citestcontrollers
+```
+
+The **services** can also be tested. Much like the controllers, the test results file generated here is "test-results/ci.service.results.xml". The test can be run like so ..
+
+```bash
+$ npm run citestservices
 ```
 
 ### CI Build Status
