@@ -229,7 +229,10 @@ To deploy the application, we will need to decide the following info
 ![created app](/resources/img/non-init-app.png)
 
 ## Deploying this app
-...
+I will be using the Azure DevOps Release Pipeline to automate this deployment. Since we previously used the same tool to build the app, the deployment is super simple.
+
+You can follow along with these screenshots ...
+<<ADD Screenshots HERE>>
 
 ## Credits
 The code written has been forked & modified from Samuele Zaza's [original repo](https://github.com/samuxyz/movie-collection) (if you are interested in the code, Sam has written an excellent post detailing [how to build RESTful apis with NodeJS](https://scotch.io/tutorials/speed-up-your-restful-api-development-in-node-js-with-swagger)).
