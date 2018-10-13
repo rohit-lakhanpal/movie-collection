@@ -1,4 +1,5 @@
 # ignore test-results
+test-results/
 
 # Logs
 logs

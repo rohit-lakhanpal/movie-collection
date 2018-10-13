@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",    
-    "test": "npm run cicontrollertests; npm run ciservicetests",
-    "localtest": "swagger project test",
-    "cicontrollertests": "mocha test/**/**/*.js --exit --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.controller.results.xml",
-    "ciservicetests": "mocha test/**/*.js --exit --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.service.results.xml"
+    "test": "swagger project test",
+    "citests": "npm run citestservices; npm run citestcontrollers",    
+    "citestcontrollers": "mocha test/**/**/*.js --exit --timeout 10000  --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.controller.results.xml",
+    "citestservices": "mocha test/**/*.js --exit --timeout 10000 --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.service.results.xml"
   },
   "repository": {
     "type": "git",

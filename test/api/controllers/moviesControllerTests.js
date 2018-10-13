@@ -3,6 +3,7 @@ var request = require('supertest');
 const express = require('express');
 var server = require('../../../index');
 
+
 describe('controllers', function () {
     describe('moviesController', function () {
         describe('#/movie', function () {
@@ -17,7 +18,7 @@ describe('controllers', function () {
                         should(res.body.movies.constructor === Array).equal(true);
                         done();
                     });
-                should(true).equal(true);                
+                should(true).equal(true);
             });
         });
 
@@ -30,11 +31,11 @@ describe('controllers', function () {
                     .expect('Content-Type', /json/)
                     .expect(200)
                     .end(function (err, res) {
-                        if (err) throw err;      
-                        should(res.body.constructor === Object).equal(true);                  
+                        if (err) throw err;
+                        should(res.body.constructor === Object).equal(true);
                         should(res.body.id === 1).equal(true);
                         done();
-                    });                
+                    });
             });
         });
     });
