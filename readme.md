@@ -119,16 +119,10 @@ done
 ### CI Tests
 I have used Azure DevOps for the Build-Test-Deploy ALM Life cycle. The Project is located at [https://dev.azure.com/rohitl/movie-collection](https://dev.azure.com/rohitl/movie-collection). Instructions on viewing the results of the CI Pipeline is available using the aforementioned link.
 
-The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter to run the **controller test**. The tests on running, create a test results file at "/test-results/ci.controller.results.xml" like so  ..
+The tests for the CI pipeline run the following command that allows using the mocha-junit-reporter to run the **controller & service test**. The tests on running, create a test results file at "/test-results/ci.results.xml" like so  ..
 
 ```bash
-$ npm run citestcontrollers
-```
-
-The **services** can also be tested. Much like the controllers, the test results file generated here is "test-results/ci.service.results.xml". The test can be run like so ..
-
-```bash
-$ npm run citestservices
+$ npm run citests
 ```
 
 ### CI Build Status
@@ -147,7 +141,6 @@ My CI build settings for the APP were as shown below. I've used the following ar
 ![8](/resources/img/build-8.png)
 ![9](/resources/img/build-9.png)
 ![10](/resources/img/build-10.png)
-![11](/resources/img/build-11.png)
 
 ## Creating the Azure Resources for Deployment
 Now lets use Azure CLI to deploy this app. I have used the following post to guide me in deploying this app: "[Create a web app and deploy files with FTP](https://docs.microsoft.com/en-au/azure/app-service/scripts/app-service-cli-deploy-ftp?toc=%2fcli%2fazure%2ftoc.json)".
@@ -157,12 +150,12 @@ The Azure CLI is Microsoft's cross-platform command-line experience for managing
 
 ### Pre-requisites
 To deploy the application, we will need to decide the following info
-1. An Azure subscription account (in my case its called 'Subscription 2')
-1. A resource group (in my case i'm creating a new one called 'rg-ause-movie-collection')
-1. Deployment location (i'll be deploying to the 'Australia Southeast' data center)
-1. An App Service Plan & the tier (i'm creating rg-ause-appsvcplan-free in using the free tier)
-1. Name of web application (i'm calling it rg-ause-webapp-movie-collection)
-1. NodeJS version (you can check available runtimes using **az webapp list-runtimes**)
+1. Download and install the Azure CLI toolset (you can get it [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest))
+1. A resource group (in my case i'm creating a new one called `rg-ause-movie-collection`)
+1. Deployment location (i'll be deploying to the `Australia Southeast` data center)
+1. An App Service Plan & the tier (i'm creating `rg-ause-appsvcplan-free` in using the free tier)
+1. Name of web application (i'm calling it `rg-ause-webapp-movie-collection`)
+1. NodeJS version (you can check available runtimes using `az webapp list-runtimes`)
 
 ### Steps to create the necessary resources
 1. Start by logging in 
@@ -180,7 +173,7 @@ To deploy the application, we will need to decide the following info
         "isDefault": false,
         "name": "Subscription 1",
         "state": "Enabled",
-        "tenantId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "tenantId": "TIDXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
         "user": {
           "name": "roh.it@hotmail.com",
           "type": "user"
@@ -188,11 +181,11 @@ To deploy the application, we will need to decide the following info
       },
       {
         "cloudName": "AzureCloud",
-        "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "id": "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
         "isDefault": false,
         "name": "Subscription 2",
         "state": "Enabled",
-        "tenantId": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+        "tenantId": "TIDYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
         "user": {
           "name": "roh.it@hotmail.com",
           "type": "user"
@@ -205,6 +198,28 @@ To deploy the application, we will need to decide the following info
     ```bash
     $ az account set -s "Subscription 2"
     ```
+
+1. You now need to get your **Subscription Id**
+     ```bash
+    $ az account show
+    {
+        "cloudName": "AzureCloud",
+        "id": "YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
+        "isDefault": false,
+        "name": "Subscription 2",
+        "state": "Enabled",
+        "tenantId": "TIDYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY",
+        "user": {
+          "name": "roh.it@hotmail.com",
+          "type": "user"
+        }
+      }
+    ```
+    > ### Important: 
+    > 
+    > You now need to copy the value in the `id` field and paste it in the `./resources/deploy/parameters.json`. In the example shown above, the id is *YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY*, so the parameters.json file needs to be modified like so ..
+    >  
+    > ![parameters](/resources/img/parameters.png) 
 
 1. List the resource groups available to you
     ```bash
@@ -219,10 +234,16 @@ To deploy the application, we will need to decide the following info
     ```bash    
     $ az appservice plan create --name rg-ause-appsvcplan-free --resource-group rg-ause-movie-collection --sku FREE
     ```
-1. Now its time to create our webapp
+1. Now its time to create our webapp by calling the deploy script
     ```bash
-    az webapp create --name rg-ause-webapp-movie-collection --resource-group rg-ause-movie-collection --plan rg-ause-appsvcplan-free --runtime "node|8.11" 
+    $ cd resources/deploy
+
+    $ sh deploy.sh -i YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY -g rg-ause-movie-collection -n rg-ause-webapp-movie-collection -l "Australia Southeast"
+    ....
+    Template has been successfully deployed
     ```
+    > If you are on a windows machine you can run the `deploy.ps1` powershell script instead of the `deploy.sh` shell script.
+
 1. You should now be able to see your app within the Azure Portal ![created app](/resources/img/created-app.png)
 
 1. On navigating to the web app you will see this ..

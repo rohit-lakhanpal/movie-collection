@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",    
-    "test": "swagger project test",
-    "citestcontrollers": "mocha test/**/**/*.js --exit --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.controller.results.xml",
-    "citestservices": "mocha test/**/*.js --exit --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.service.results.xml"
+    "test": "swagger project test",    
+    "citests": "mocha test/**/*.js --exit --reporter mocha-junit-reporter --reporter-options mochaFile=./test-results/ci.results.xml"
   },
   "repository": {
     "type": "git",

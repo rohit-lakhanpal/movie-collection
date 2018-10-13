@@ -1,0 +1,55 @@
+{
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "hostingPlanName": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "hostingEnvironment": {
+            "type": "string"
+        },
+        "serverFarmResourceGroup": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/sites",
+            "properties": {
+                "siteConfig": {
+                    "appSettings": []
+                },
+                "name": "[parameters('name')]",
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "hostingEnvironment": "[parameters('hostingEnvironment')]"
+            },
+            "resources": [
+                {
+                    "apiVersion": "2016-03-01",
+                    "name": "web",
+                    "type": "sourcecontrols",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+                    ],
+                    "properties": {
+                        "RepoUrl": "https://github.com/azure-appservice-samples/NodeJS-EmptySiteTemplate",
+                        "branch": "master",
+                        "IsManualIntegration": true
+                    }
+                }
+            ],
+            "apiVersion": "2016-03-01",
+            "location": "[parameters('location')]"
+        }
+    ],
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0"
+}
